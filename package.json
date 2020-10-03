@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "api": "npm run dev --prefix packages/api",
+    "web": "npm run start --prefix packages/web",
+    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run web\"",
+    "lint": "eslint ./packages --ext=js, --ext=jsx --ignore-pattern node_modules",
+    "lint:fix": "eslint ./packages --ext=js, --ext=jsx --ignore-pattern node_modules --fix",
+    "prettier:fix": "prettier --write",
+    "test": "cross-env NODE_ENV=test jest --watch --runInBand"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run lint",
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
+  }
+}
