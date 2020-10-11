@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import backgroundImg from "../../assets/HeroImagemd.png";
 import CatLogo from "../Commons/CatLogo";
+import Search from "./search";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,13 +33,18 @@ const Text = styled.p`
   font-weight: 500;
 `;
 
+const Space = styled.div`
+  margin: 1.5rem;
+`;
+
 const Hero = () => (
   <Wrapper>
     <BackgroundContainer>
       <Container>
         <CatLogo fill="white" width="30rem" />
         <Text>Get to know more about your cat breed</Text>
-        <input type="text" placeholder="Search.." />
+        <Space />
+        <Search />
       </Container>
     </BackgroundContainer>
   </Wrapper>

@@ -5,10 +5,10 @@ import * as serviceWorker from "./serviceWorker";
 import GlobalStyles from "./globalStyles";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <GlobalStyles />
     <App />
-  </React.StrictMode>,
+  </>,
   document.getElementById("root")
 );
 
