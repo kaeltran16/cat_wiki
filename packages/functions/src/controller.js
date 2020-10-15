@@ -1,14 +1,11 @@
-const express = require("express");
 const axios = require("axios");
+const CAT_API_KEY = require("./constants");
 
-const CAT_API_KEY = require("../constants");
-const router = express.Router();
+function test(req, res) {
+  return res.status(200).json({ message: "yayy" });
+}
 
-router.get("/", (req, res) => {
-  res.status(200).json("ok");
-});
-
-router.get("/search", async (req, res) => {
+const searchCat = async (req, res) => {
   const name = req.query.name;
   if (!name) {
     return res.status(400).json({ message: "query is missing" });
@@ -27,6 +24,8 @@ router.get("/search", async (req, res) => {
   } catch (e) {
     return res.status(400).json({ message: e.message });
   }
-});
-
-module.exports = router;
+};
+module.exports = {
+  test,
+  searchCat,
+};

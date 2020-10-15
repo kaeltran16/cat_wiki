@@ -3,9 +3,13 @@ import styled from "styled-components";
 import backgroundImg from "../../assets/HeroImagemd.png";
 import CatLogo from "../Commons/CatLogo";
 import Search from "./search";
+import MostSearch from "./mostSearch";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  background-color: #e3e1dc;
+  align-items: center;
 `;
 
 const BackgroundContainer = styled.div`
@@ -47,6 +51,7 @@ const Hero = () => (
         <Search />
       </Container>
     </BackgroundContainer>
+    <MostSearch />
   </Wrapper>
 );
 export default Hero;

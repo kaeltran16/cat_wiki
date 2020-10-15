@@ -5,8 +5,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-size: 62.5%;
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: scroll;
     }
   *, 
   *::after,

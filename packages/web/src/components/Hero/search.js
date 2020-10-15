@@ -2,18 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AsyncSelect from "react-select/async";
 
-const Input = styled.input`
-  width: 30rem;
-  height: 5rem;
-  border-radius: 5rem;
-
-  ::placeholder {
-    padding-left: 2rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-`;
-
 const selectStyles = {
   control: (provided, _) => ({
     ...provided,
@@ -24,6 +12,23 @@ const selectStyles = {
   placeholder: (provided, _) => ({
     ...provided,
     paddingLeft: "2rem",
+    fontSize: "1.5rem",
+    fontWeight: "500",
+  }),
+  input: (provided, _) => ({
+    ...provided,
+    paddingLeft: "2rem",
+    fontSize: "1.5rem",
+    fontWeight: "500",
+  }),
+  singleValue: (provided, _) => ({
+    ...provided,
+    paddingLeft: "2rem",
+    fontSize: "1.5rem",
+    fontWeight: "500",
+  }),
+  option: (provided, _) => ({
+    ...provided,
     fontSize: "1.5rem",
     fontWeight: "500",
   }),
@@ -44,6 +49,11 @@ const Search = () => {
     setSelectedValue(value);
   };
 
+  const handleFocus = () => {
+    setSelectedValue(null);
+    setValue("");
+  };
+
   const loadOptions = async (inputValue) => {
     try {
       const response = await fetch(
@@ -62,6 +72,9 @@ const Search = () => {
         cacheOptions
         loadOptions={loadOptions}
         defaultOptions
+        value={selectedValue}
+        blurInputOnSelect
+        onFocus={handleFocus}
         getOptionLabel={(e) => e.name}
         getOptionValue={(e) => e.name}
         onChange={handleChange}
