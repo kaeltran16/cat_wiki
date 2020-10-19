@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CatImage from "../../assets/catItem.png";
+import { useFetch } from "../../hooks";
 
 const Label = styled.p`
   font-size: 1.5rem;
@@ -14,7 +14,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
 `;
 
-const SeeMore = styled.h4`
+const SeeMore = styled.a`
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 500;
@@ -57,6 +57,20 @@ const CatName = styled.p`
   padding-top: 1rem;
 `;
 const MostSearch = () => {
+  const [topSearches, loading] = useFetch(
+    "http://localhost:5000/cat-wiki/us-central1/api/topSearch?limit=4"
+  );
+
+  const catItems = () => {
+    return topSearches.length > 0
+      ? topSearches.map((item) => (
+          <CatItem>
+            <Image src={item.url} alt={item.name} />
+            <CatName>{item.name}</CatName>
+          </CatItem>
+        ))
+      : null;
+  };
   return (
     <Container>
       <Label>Most Searched Breeds</Label>
@@ -67,24 +81,7 @@ const MostSearch = () => {
         </Header>
         <SeeMore>See more →</SeeMore>
       </HeaderContainer>
-      <ImageContainer>
-        <CatItem>
-          <Image src={CatImage} alt="cat-image" />
-          <CatName>Bengal</CatName>
-        </CatItem>
-        <CatItem>
-          <Image src={CatImage} alt="cat-image" />
-          <CatName>Bengal</CatName>
-        </CatItem>
-        <CatItem>
-          <Image src={CatImage} alt="cat-image" />
-          <CatName>Bengal</CatName>
-        </CatItem>
-        <CatItem>
-          <Image src={CatImage} alt="cat-image" />
-          <CatName>Bengal</CatName>
-        </CatItem>
-      </ImageContainer>
+      <ImageContainer>{loading ? <p>Loading..</p> : catItems()}</ImageContainer>
     </Container>
   );
 };
