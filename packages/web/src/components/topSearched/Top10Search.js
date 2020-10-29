@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import LazyImage from '../Commons/LazyImage';
-import { useFetch } from '../../hooks';
-import Layout from '../layout';
 
 const Container = styled.div`
 	display: grid;
@@ -38,14 +36,13 @@ const CatImg = styled(LazyImage)`
 	grid-row: 1/-1;
 	grid-column: 1/1;
 `;
-const Top10Search = () => {
-	const [topSearches, loading] = useFetch(
-		'http://localhost:5001/cat-wiki/us-central1/api/topSearch?limit=10'
-	);
+
+const Top10Search = ({ resource }) => {
+	const topSearches = resource.read();
 
 	const displayTopSearches = topSearches => {
 		return topSearches.map((cat, idx) => (
-			<CatItem>
+			<CatItem key={`${cat.id}`}>
 				<CatImg src={cat.photoUrl} alt={cat.name} width='80%' height='15rem' />
 				<Name>{`${idx + 1}. ${cat.name}`}</Name>
 				<Description>{cat.desc}</Description>
@@ -54,12 +51,10 @@ const Top10Search = () => {
 	};
 
 	return (
-		<Layout>
-			<Container>
-				<Header>Top 10 most searched breeds</Header>
-				{loading ? <p>Loading</p> : displayTopSearches(topSearches)}
-			</Container>
-		</Layout>
+		<Container>
+			<Header>Top 10 most searched breeds</Header>
+			{displayTopSearches(topSearches)}
+		</Container>
 	);
 };
 

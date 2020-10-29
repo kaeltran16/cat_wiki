@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useFetch } from '../../hooks';
 import LazyImage from '../Commons/LazyImage';
 
 const PhotoContainer = styled.div`
@@ -16,10 +15,8 @@ const Header = styled.h4`
 	font-size: 2.5rem;
 	margin: 5rem 2rem 2rem;
 `;
-const MoreImage = ({ id }) => {
-	const [images, imageLoading] = useFetch(
-		`http://localhost:5001/cat-wiki/us-central1/api/images?limit=8&id=${id}`
-	);
+const MoreImage = ({ resource }) => {
+	const images = resource.read();
 	const displayImage = data => {
 		return data.map((item, idx) => (
 			<LazyImage
@@ -34,9 +31,7 @@ const MoreImage = ({ id }) => {
 	return (
 		<>
 			<Header>Other photos</Header>
-			<PhotoContainer>
-				{imageLoading ? <p>Loading...</p> : displayImage(images)}
-			</PhotoContainer>
+			<PhotoContainer>{displayImage(images)}</PhotoContainer>
 		</>
 	);
 };

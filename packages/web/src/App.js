@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import CatDetail from './components/Hero/catDetail';
+import CatDetail from './components/CatDetail';
 import Hero from './components/Hero';
-import Top10Search from './components/Article/Top10Search';
+import TopSearched from './components/topSearched';
 
 const App = () => (
 	<BrowserRouter>
 		<Switch>
 			<Route path='/' exact component={Hero} />
 			<Route path='/detail/:name' component={CatDetail} />
-			<Route path='/topSearches' component={Top10Search} />
+			<Route path='/topSearches' component={TopSearched} />
 		</Switch>
 	</BrowserRouter>
 );

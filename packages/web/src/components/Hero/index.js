@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import backgroundImg from '../../assets/HeroImagemd.png';
 import CatLogo from '../Commons/CatLogo';
@@ -6,6 +6,8 @@ import Search from './search';
 import MostSearch from './mostSearch';
 import Layout from '../layout';
 import Article from '../Article';
+import { createResource, topSearchedCat } from '../../services';
+import Spinner from '../Commons/Spinner';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -46,6 +48,7 @@ const Space = styled.div`
 `;
 
 const Hero = () => {
+	const topSearchedResource = createResource(topSearchedCat(10));
 	return (
 		<Layout>
 			<Wrapper>
@@ -57,7 +60,9 @@ const Hero = () => {
 						<Search />
 					</Container>
 				</BackgroundContainer>
-				<MostSearch />
+				<Suspense fallback={<Spinner />}>
+					<MostSearch resource={topSearchedResource} />
+				</Suspense>
 			</Wrapper>
 			<Article />
 		</Layout>

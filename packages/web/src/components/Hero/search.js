@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 import { useHistory } from 'react-router-dom';
 import { components } from 'react-select';
+import { searchCatByName } from '../../services';
 
 const selectStyles = {
 	control: (provided, _) => ({
@@ -63,12 +64,8 @@ const Search = () => {
 	const loadOptions = async inputValue => {
 		if (inputValue) {
 			try {
-				const response = await fetch(
-					`http://localhost:5001/cat-wiki/us-central1/api/search?name=${inputValue}`
-				);
-
-				const data = await response.json();
-				return data.message ? [] : data;
+				const response = await searchCatByName(inputValue);
+				return response.message ? [] : response;
 			} catch (e) {}
 		}
 	};

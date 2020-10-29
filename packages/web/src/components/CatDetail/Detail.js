@@ -1,19 +1,15 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import LazyImage from '../Commons/LazyImage';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-import Layout from '../layout';
 import Rating from 'react-rating';
 import CatRate from '../Commons/CatRate';
-import { useFetch } from '../../hooks';
-import LazyImage from '../Commons/LazyImage';
-import MoreImage from './MoreImages';
 
 const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 `;
 
-const Detail = styled.div`
+const DetailContainer = styled.div`
 	flex: 0 1 60%;
 	display: flex;
 	flex-direction: column;
@@ -55,29 +51,13 @@ const Row = styled.div`
 	justify-content: flex-start;
 `;
 
-const CatDetail = () => {
-	const { name } = useParams();
-
-	const [data, loading] = useFetch(
-		`http://localhost:5001/cat-wiki/us-central1/api/searchId?name=${name}`
-	);
-
+const Detail = ({ resource, storeSearchedCat }) => {
+	const data = resource.read();
 	useEffect(() => {
-		if (data.length > 0 || Object.keys(data).length > 0) {
-			const { id, photoUrl, desc, name } = data;
-			fetch('http://localhost:5001/cat-wiki/us-central1/api/search', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					id,
-					photoUrl,
-					desc,
-					name
-				})
-			});
+		if (data) {
+			storeSearchedCat(data);
 		}
 	}, [data]);
-
 	const textRow = text => {
 		const splitText = text.split(':');
 		return (
@@ -131,27 +111,21 @@ const CatDetail = () => {
 			</>
 		);
 	};
-
 	return (
-		<Layout>
-			<Suspense >
-				<Container>
-					<LazyImage
-						src={data.photoUrl}
-						alt={data.name}
-						width='25%'
-						height='30rem'
-					/>
-					<Detail>
-						<Header>{data.name}</Header>
-						<Intro>{data.desc}</Intro>
-						{displayData(data)}
-					</Detail>
-				</Container>
-				<MoreImage id={data.id} />
-			</Suspense>
-		</Layout>
+		<Container>
+			<LazyImage
+				src={data.photoUrl}
+				alt={data.name}
+				width='25%'
+				height='30rem'
+			/>
+			<DetailContainer>
+				<Header>{data.name}</Header>
+				<Intro>{data.desc}</Intro>
+				{displayData(data)}
+			</DetailContainer>
+		</Container>
 	);
 };
 
-export default CatDetail;
+export default Detail;

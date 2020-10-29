@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { useFetch } from '../../hooks';
 import LazyImage from '../Commons/LazyImage';
 
 const Label = styled.p`
@@ -55,10 +54,8 @@ const Container = styled.div`
 	width: 80%;
 `;
 
-const MostSearch = () => {
-	const [topSearches, loading] = useFetch(
-		'http://localhost:5001/cat-wiki/us-central1/api/topSearch?limit=4'
-	);
+const MostSearch = ({ resource }) => {
+	const topSearches = resource.read();
 
 	const history = useHistory();
 
@@ -94,7 +91,7 @@ const MostSearch = () => {
 				</Header>
 				<SeeMore onClick={handleViewMore}>See more →</SeeMore>
 			</HeaderContainer>
-			<ImageContainer>{!loading && catItems()}</ImageContainer>
+			<ImageContainer>{catItems()}</ImageContainer>
 		</Container>
 	);
 };
