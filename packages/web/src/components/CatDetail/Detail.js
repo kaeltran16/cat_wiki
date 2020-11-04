@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import media from 'styled-media-query';
 import LazyImage from '../Commons/LazyImage';
 import styled from 'styled-components';
 import Rating from 'react-rating';
@@ -7,6 +8,18 @@ import CatRate from '../Commons/CatRate';
 const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
+	${media.lessThan('small')`
+			flex-direction: column;
+	`}
+`;
+
+const ImageContainer = styled.div`
+	width: 35%;
+	height: 30rem;
+	${media.lessThan('small')`
+			width: 100%;
+			height: 30rem;
+	`}
 `;
 
 const DetailContainer = styled.div`
@@ -14,7 +27,6 @@ const DetailContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	flex-wrap: wrap;
 
 	& > :nth-child(-n + 5) {
 		margin: 1rem 0 1rem 0;
@@ -30,25 +42,28 @@ const Header = styled.h4`
 const Intro = styled.p`
 	font-size: 1.5rem;
 	font-weight: 500;
-	line-height: 1.5rem;
+	line-height: 2.5rem;
 `;
 
 const Text = styled.p`
 	font-weight: 500;
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	flex: 0 1 50%;
 `;
 
 const Label = styled.p`
 	font-weight: 700;
-	font-size: 1.25rem;
-	flex: 0 1 20%;
+	font-size: 1.5rem;
+	flex: 0 1 30%;
 `;
 
 const Row = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	${media.lessThan('small')`
+			flex-direction: column;
+	`}
 `;
 
 const Detail = ({ resource, storeSearchedCat }) => {
@@ -62,7 +77,7 @@ const Detail = ({ resource, storeSearchedCat }) => {
 		const splitText = text.split(':');
 		return (
 			<Row>
-				<Label>{`${splitText[0]}: `}</Label>
+				<Label>{`${splitText[0]}`}</Label>
 				<Text>{splitText[1]}</Text>
 			</Row>
 		);
@@ -71,7 +86,7 @@ const Detail = ({ resource, storeSearchedCat }) => {
 	const ratingRow = (label, rate) => {
 		return (
 			<Row>
-				<Label>{`${label} :`}</Label>
+				<Label>{`${label}`}</Label>
 				<Rating
 					readonly
 					initialRating={rate}
@@ -113,12 +128,9 @@ const Detail = ({ resource, storeSearchedCat }) => {
 	};
 	return (
 		<Container>
-			<LazyImage
-				src={data.photoUrl}
-				alt={data.name}
-				width='25%'
-				height='30rem'
-			/>
+			<ImageContainer>
+				<LazyImage src={data.photoUrl} alt={data.name} />
+			</ImageContainer>
 			<DetailContainer>
 				<Header>{data.name}</Header>
 				<Intro>{data.desc}</Intro>

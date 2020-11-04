@@ -17,6 +17,7 @@
     "react-select": "^3.1.0",
     "react-spinners-kit": "^1.9.1",
     "styled-components": "^5.2.0",
+    "styled-media-query": "^2.1.2",
     "use-async-resource": "^2.2.0"
   },
   "scripts": {

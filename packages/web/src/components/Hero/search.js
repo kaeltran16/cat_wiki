@@ -38,7 +38,7 @@ const selectStyles = {
 };
 
 const Container = styled.div`
-	width: 70%;
+	width: 75%;
 `;
 const Search = () => {
 	const [inputValue, setValue] = useState('');
@@ -73,7 +73,7 @@ const Search = () => {
 	return (
 		<Container>
 			<AsyncSelect
-				placeholder='Enter your breed..'
+				placeholder='Search..'
 				styles={selectStyles}
 				cacheOptions
 				loadOptions={loadOptions}

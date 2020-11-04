@@ -3,12 +3,19 @@ import styled from 'styled-components';
 import Navbar from './navbar';
 import Footer from './Commons/Footer';
 import ErrorBoundary from './Commons/ErrorBoundary';
+import media from 'styled-media-query';
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 90%;
 	margin: 0 auto;
+
+	${media.lessThan('small')`
+			width: 95%;
+	`}
+	${media.greaterThan('small')`
+			width: 90%;
+	`}
 `;
 const Layout = ({ children }) => (
 	<Container>

@@ -17,7 +17,7 @@ const Navbar = () => {
 	};
 	return (
 		<Container>
-			<Logo width='15%' onClick={handleLogoClick} />;
+			<Logo width='17.5rem' onClick={handleLogoClick} />;
 		</Container>
 	);
 };

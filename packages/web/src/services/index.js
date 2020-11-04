@@ -36,7 +36,7 @@ const searchCatByName = name => {
 };
 
 const catDetailByName = name => {
-	return fetch(`${baseUrl}/searchId?name=${name}`).then(res => res.json());
+	return fetch(`${baseUrl}/detail?name=${name}`).then(res => res.json());
 };
 
 const catImgByName = name => {

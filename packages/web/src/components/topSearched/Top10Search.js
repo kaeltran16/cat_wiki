@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 import LazyImage from '../Commons/LazyImage';
 
 const Container = styled.div`
@@ -19,6 +20,12 @@ const CatItem = styled.div`
 	grid-template-rows: repeat(2, 1fr);
 	grid-template-columns: 2fr 8fr;
 	align-items: center;
+
+	${media.lessThan('small')`
+			grid-template-rows: 2fr 4fr 4fr;
+			grid-template-columns: 1fr;
+			grid-row-gap: 2rem;
+	`}
 `;
 
 const Name = styled.h1`
@@ -32,9 +39,17 @@ const Description = styled.p`
 	line-height: 1.5rem;
 `;
 
-const CatImg = styled(LazyImage)`
+const ImageContainer = styled.div`
+	width: 80%;
+	height: 15rem;
 	grid-row: 1/-1;
 	grid-column: 1/1;
+
+	${media.lessThan('small')`
+			width: 100%;
+			height: 20rem;
+			grid-row: 2/-1;
+	`}
 `;
 
 const Top10Search = ({ resource }) => {
@@ -43,7 +58,9 @@ const Top10Search = ({ resource }) => {
 	const displayTopSearches = topSearches => {
 		return topSearches.map((cat, idx) => (
 			<CatItem key={`${cat.id}`}>
-				<CatImg src={cat.photoUrl} alt={cat.name} width='80%' height='15rem' />
+				<ImageContainer>
+					<LazyImage src={cat.photoUrl} alt={cat.name} />
+				</ImageContainer>
 				<Name>{`${idx + 1}. ${cat.name}`}</Name>
 				<Description>{cat.desc}</Description>
 			</CatItem>

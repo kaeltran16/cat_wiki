@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 import { useHistory } from 'react-router-dom';
 import LazyImage from '../Commons/LazyImage';
 
@@ -28,22 +29,36 @@ const SeeMore = styled.a`
 	font-size: 1.5rem;
 	font-weight: 500;
 	align-self: flex-end;
+	color: gray;
 	line-height: 3rem;
 	cursor: pointer;
+	${media.lessThan('small')`
+			line-height: 2rem;
+	`}
 `;
 
 const Header = styled.h1`
 	font-size: 3rem;
 	font-weight: 700;
 	line-height: 5rem;
+	${media.lessThan('small')`
+			line-height: 4rem;
+	`}
 `;
 
 const ImageContainer = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1fr;
 	grid-gap: 2rem;
 	height: 20rem;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr;
+
+	${media.lessThan('small')`
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		height: 32rem;	
+		margin-top: 2rem;
+	`}
 `;
 
 const Container = styled.div`

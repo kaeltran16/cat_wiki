@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 import LazyImage from '../Commons/LazyImage';
 
 const PhotoContainer = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: repeat(4, 1fr);
 	grid-auto-flow: row;
 	grid-gap: 3rem;
 	margin-top: 2rem;
 	height: fit-content;
+	${media.lessThan('small')`
+			grid-template-columns: repeat(2, 1fr);
+	`}
 `;
 const Header = styled.h4`
 	font-weight: 600;

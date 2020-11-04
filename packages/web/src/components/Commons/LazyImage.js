@@ -4,8 +4,8 @@ import LazyLoad from 'react-lazyload';
 
 const ImageWrapper = styled.div`
 	position: relative;
-	width: ${props => props.width};
-	height: ${props => props.height};
+	width: ${props => (props.width ? props.width : '100%')};
+	height: ${props => (props.height ? props.height : '100%')};
 	cursor: pointer;
 `;
 
@@ -38,25 +38,16 @@ const StyledImage = styled.img`
 	height: 100%;
 	object-fit: cover;
 	border-radius: 2rem;
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
 `;
 
 const LazyImage = ({ src, alt, ...props }) => {
-	const refPlaceholder = React.useRef();
-
-	const removePlaceholder = () => {
-		refPlaceholder.current.remove();
-	};
-
 	return (
 		<ImageWrapper {...props}>
-			<Placeholder ref={refPlaceholder} />
-			<LazyLoad>
-				<StyledImage
-					onLoad={removePlaceholder}
-					onError={removePlaceholder}
-					src={src}
-					alt={alt}
-				/>
+			<LazyLoad once placeholder={<Placeholder />}>
+				<StyledImage src={src} alt={alt} />
 			</LazyLoad>
 		</ImageWrapper>
 	);
