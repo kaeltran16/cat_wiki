@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "api": "npm run dev --prefix packages/api",
+    "api": "npm run serve --prefix packages/functions",
     "web": "npm run start --prefix packages/web",
     "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run web\"",
     "lint": "eslint ./packages --ext=js, --ext=jsx --ignore-pattern node_modules",
@@ -15,7 +15,7 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run lint",
-      "npm run prettier",
+      "npm run prettier:fix",
       "git add"
     ]
   },
