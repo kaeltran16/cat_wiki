@@ -1,13 +1,15 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
-  test,
-  searchCat,
-  getTopSearch,
-  storeSearches,
-} = require("./controller");
+	getCatImages,
+	getCatDetailByName,
+	getTopSearch,
+	getSearchCatByName,
+	postSearch
+} = require('./controllers');
 
-router.get("/", test);
-router.get("/search", searchCat);
-router.get("/topSearch", getTopSearch);
-router.post("/searches", storeSearches);
+router.get('/search', getSearchCatByName);
+router.post('/search', postSearch);
+router.get('/detail', getCatDetailByName);
+router.get('/topSearch', getTopSearch);
+router.get('/images', getCatImages);
 module.exports = router;
