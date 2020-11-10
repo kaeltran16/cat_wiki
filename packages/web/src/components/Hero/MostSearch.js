@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Label = styled.p`
 	font-size: 1.5rem;
@@ -30,7 +29,6 @@ const SeeMore = styled.a`
 	font-size: 1.5rem;
 	font-weight: 500;
 	align-self: flex-end;
-	color: gray;
 	line-height: 3rem;
 	cursor: pointer;
 	${media.lessThan('small')`

@@ -73,7 +73,11 @@ const Intro = styled.p`
 const SeeMore = styled.a`
 	font-size: 1.75rem;
 	font-weight: 500;
-	color: darkgray;
+	text-decoration: none;
+
+	&:visited {
+		color: black;
+	}
 `;
 
 const Article = () => {
@@ -85,7 +89,11 @@ const Article = () => {
 					Having a cat around you can actually trigger the release of calming
 					chemicals in your body which lower your stress and anxiety levels
 				</Intro>
-				<SeeMore>READ MORE →</SeeMore>
+				<SeeMore
+					href='https://medium.com/@julie_xu/10-reasons-why-cats-are-good-for-you-29169900223c'
+					target='_blank'>
+					READ MORE →
+				</SeeMore>
 			</TextContainer>
 			<ImageContainer>
 				<Img1 src={img1} />

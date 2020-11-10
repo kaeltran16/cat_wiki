@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Container = styled.div`
 	display: grid;

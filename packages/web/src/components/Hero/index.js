@@ -2,13 +2,11 @@ import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import backgroundImg from '../../assets/HeroImagemd.png';
-import CatLogo from '../Commons/CatLogo';
-import Search from './search';
-import MostSearch from './mostSearch';
-import Layout from '../layout';
+import { CatLogo, Layout, Spinner } from '../Commons';
+import Search from './Search';
+import MostSearch from './MostSearch';
 import Article from '../Article';
 import { createResource, topSearchedCat } from '../../services';
-import Spinner from '../Commons/Spinner';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -26,7 +24,8 @@ const BackgroundContainer = styled.div`
 	background-position: center top;
 	background-repeat: no-repeat;
 	display: flex;
-	border-radius: 3rem;
+	border-top-left-radius: 3rem;
+	border-top-right-radius: 3rem;
 	${media.lessThan('small')`
 		height: 20rem;
 	`}

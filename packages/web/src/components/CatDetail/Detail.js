@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import media from 'styled-media-query';
 import styled from 'styled-components';
 import Rating from 'react-rating';
-import CatRate from '../Commons/CatRate';
+import { CatRate } from '../Commons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Container = styled.div`
 	display: flex;

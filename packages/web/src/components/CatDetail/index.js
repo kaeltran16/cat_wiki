@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '../layout';
+import { Layout, Spinner } from '../Commons';
 import {
 	catDetailByName,
 	catImgByName,
@@ -9,7 +9,6 @@ import {
 } from '../../services';
 import Detail from './Detail';
 import MoreImage from './MoreImages';
-import Spinner from '../Commons/Spinner';
 
 const CatDetail = () => {
 	const { name } = useParams();
