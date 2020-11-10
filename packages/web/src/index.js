@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./app";
-import * as serviceWorker from "./serviceWorker";
-import GlobalStyles from "./globalStyles";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
+import * as serviceWorker from './serviceWorker';
+import GlobalStyles from './globalStyles';
 
 ReactDOM.render(
-  <>
-    <GlobalStyles />
-    <App />
-  </>,
-  document.getElementById("root")
+	<>
+		<GlobalStyles />
+		<App />
+	</>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

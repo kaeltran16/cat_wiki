@@ -104,3 +104,6 @@ dist
 .tern-port
 
 packages/functions/.runtimeconfig.json
+
+packages/web/build
+.idea/
