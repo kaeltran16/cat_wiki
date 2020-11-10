@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import media from 'styled-media-query';
-import LazyImage from '../Commons/LazyImage';
 import styled from 'styled-components';
 import Rating from 'react-rating';
 import CatRate from '../Commons/CatRate';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Container = styled.div`
 	display: flex;
@@ -129,7 +130,13 @@ const Detail = ({ resource, storeSearchedCat }) => {
 	return (
 		<Container>
 			<ImageContainer>
-				<LazyImage src={data.photoUrl} alt={data.name} />
+				<LazyLoadImage
+					width='100%'
+					height='100%'
+					effect='blur'
+					src={data.photoUrl}
+					alt={data.name}
+				/>
 			</ImageContainer>
 			<DetailContainer>
 				<Header>{data.name}</Header>

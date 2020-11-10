@@ -30,6 +30,9 @@ const BackgroundContainer = styled.div`
 	${media.lessThan('small')`
 		height: 20rem;
 	`}
+	${media.greaterThan('large')`
+		background-size: cover;
+	`}
 `;
 
 const Container = styled.div`
@@ -64,27 +67,31 @@ const Text = styled.p`
 
 const Space = styled.div`
 	margin: 1.5rem;
+
+	${media.lessThan('small')`
+		margin: 0.5rem;	
+	`}
 `;
 
 const Hero = () => {
-   const topSearchedResource = createResource(topSearchedCat(10));
-   return (
-      <Layout>
-         <Wrapper>
-            <BackgroundContainer>
-               <Container>
-                  <Header fill='white'/>
-                  <Text>Get to know more about your cat breed</Text>
-                  <Space/>
-                  <Search/>
-               </Container>
-            </BackgroundContainer>
-            <Suspense fallback={<Spinner/>}>
-               <MostSearch resource={topSearchedResource}/>
-            </Suspense>
-         </Wrapper>
-         <Article/>
-      </Layout>
-   );
+	const topSearchedResource = createResource(topSearchedCat(4));
+	return (
+		<Layout>
+			<Wrapper>
+				<BackgroundContainer>
+					<Container>
+						<Header fill='white' />
+						<Text>Get to know more about your cat breed</Text>
+						<Space />
+						<Search />
+					</Container>
+				</BackgroundContainer>
+				<Suspense fallback={<Spinner />}>
+					<MostSearch resource={topSearchedResource} />
+				</Suspense>
+			</Wrapper>
+			<Article />
+		</Layout>
+	);
 };
 export default Hero;

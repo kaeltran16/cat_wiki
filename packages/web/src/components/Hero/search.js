@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 import { useHistory } from 'react-router-dom';
 import { components } from 'react-select';
+import debounce from 'debounce-promise';
 import { searchCatByName } from '../../services';
 
 const selectStyles = {
@@ -41,34 +42,27 @@ const Container = styled.div`
 	width: 75%;
 `;
 const Search = () => {
-	const [inputValue, setValue] = useState('');
-	const [selectedValue, setSelectedValue] = useState(null);
-
 	const history = useHistory();
-	const handleInputChange = value => {
-		setValue(value);
-	};
 
 	const handleChange = value => {
-		setSelectedValue(value);
 		history.push({
 			pathname: `/detail/${value.name.toLowerCase()}`
 		});
 	};
 
-	const handleFocus = () => {
-		setSelectedValue(null);
-		setValue('');
-	};
-
-	const loadOptions = async inputValue => {
+	const getAsyncOptions = async inputValue => {
+		console.log(inputValue);
 		if (inputValue) {
 			try {
 				const response = await searchCatByName(inputValue);
-				return response.message ? [] : response;
+				return response.error ? [] : response;
 			} catch (e) {}
 		}
 	};
+
+	const debouncedLoadOptions = debounce(getAsyncOptions, 1000, {
+		leading: false
+	});
 
 	return (
 		<Container>
@@ -76,16 +70,14 @@ const Search = () => {
 				placeholder='Search..'
 				styles={selectStyles}
 				cacheOptions
-				loadOptions={loadOptions}
-				defaultOptions
-				components={{ DropdownIndicator }}
-				value={selectedValue}
+				loadOptions={inputValue => debouncedLoadOptions(inputValue)}
+				defaultOptions={[]}
+				components={{ DropdownIndicator, IndicatorSeparator: null }}
 				blurInputOnSelect
-				onFocus={handleFocus}
+				autoFocus
 				getOptionLabel={e => e.name}
 				getOptionValue={e => e.name}
 				onChange={handleChange}
-				onInputChange={handleInputChange}
 			/>
 		</Container>
 	);

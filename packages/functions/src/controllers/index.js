@@ -10,7 +10,7 @@ const {
 	formatCatDetail,
 	formatCatImages
 } = require('../utils');
-const getSearchCatByName = async (req, res) => {
+const getSearchCatByName = async (req, res, next) => {
 	const name = req.query.name;
 
 	if (!name) {
@@ -24,10 +24,7 @@ const getSearchCatByName = async (req, res) => {
 		const formatted = formatCatsIntoIdName(cats);
 		return res.status(200).json(formatted);
 	} catch (e) {
-		console.log(e);
-		return res.status(500).json({
-			error: 'Internal Error'
-		});
+		return next(e);
 	}
 };
 
@@ -114,7 +111,6 @@ const getCatImages = async (req, res) => {
 		const catImages = await searchCatImages(limit, cat[0].id);
 		return res.status(200).json(formatCatImages(catImages));
 	} catch (e) {
-		console.log(e);
 		return res.status(500).json({
 			error: 'Internal Error'
 		});

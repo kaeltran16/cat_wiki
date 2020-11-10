@@ -36,7 +36,7 @@ const ImageContainer = styled.div`
 	max-width: 45%;
 
 	${media.lessThan('small')`
-			max-width: 100%;
+			max-width: 95%;
 			margin-top: 2.5rem;	
 	`}
 `;
@@ -73,7 +73,7 @@ const Intro = styled.p`
 const SeeMore = styled.a`
 	font-size: 1.75rem;
 	font-weight: 500;
-	color: gray;
+	color: darkgray;
 `;
 
 const Article = () => {
