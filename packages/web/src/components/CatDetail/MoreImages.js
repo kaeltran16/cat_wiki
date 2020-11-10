@@ -27,17 +27,20 @@ const Header = styled.h4`
 const ImageContainer = styled.div`
 	width: 100%;
 	height: 20rem;
+
+	img {
+		border-radius: 1.5rem;
+	}
 `;
 const MoreImage = ({ resource }) => {
 	const images = resource.read();
 	const displayImage = data => {
 		return data.map((item, idx) => (
-			<ImageContainer>
+			<ImageContainer key={`${item.id}-${idx}`}>
 				<LazyLoadImage
 					width='100%'
 					height='100%'
 					src={item.photoUrl}
-					key={`${item.id}-${idx}`}
 					alt={item.name}
 				/>
 			</ImageContainer>

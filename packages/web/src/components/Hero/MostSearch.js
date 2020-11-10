@@ -91,10 +91,9 @@ const MostSearch = ({ resource }) => {
 
 	const catItems = () => {
 		return topSearches.map(cat => (
-			<CatItem>
+			<CatItem key={cat.id}>
 				<LazyLoadImage
 					onClick={() => handleCatClick(cat)}
-					key={cat.id}
 					src={cat.photoUrl}
 					alt={cat.name}
 					width='100%'
