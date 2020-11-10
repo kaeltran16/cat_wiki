@@ -1,5 +1,6 @@
 const baseUrl =
-	process.env.BASEURL || 'http://localhost:5001/cat-wiki/us-central1/api';
+	process.env.REACT_APP_BASE_API_URL ||
+	'http://localhost:5001/cat-wiki/us-central1/api';
 
 const createResource = promise => {
 	let status = 'pending';
