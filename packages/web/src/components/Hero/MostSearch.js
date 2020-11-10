@@ -68,6 +68,16 @@ const Container = styled.div`
 	width: 80%;
 `;
 
+const CatItem = styled.div`
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+
+	img {
+		border-radius: 1.25rem;
+	}
+`;
+
 const MostSearch = ({ resource }) => {
 	const topSearches = resource.read();
 
@@ -81,15 +91,17 @@ const MostSearch = ({ resource }) => {
 
 	const catItems = () => {
 		return topSearches.map(cat => (
-			<LazyLoadImage
-				onClick={() => handleCatClick(cat)}
-				key={cat.id}
-				src={cat.photoUrl}
-				alt={cat.name}
-				width='100%'
-				effect='blur'
-				height='100%'
-			/>
+			<CatItem>
+				<LazyLoadImage
+					onClick={() => handleCatClick(cat)}
+					key={cat.id}
+					src={cat.photoUrl}
+					alt={cat.name}
+					width='100%'
+					effect='blur'
+					height='100%'
+				/>
+			</CatItem>
 		));
 	};
 
