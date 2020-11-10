@@ -72,7 +72,7 @@ const Detail = ({ resource, storeSearchedCat }) => {
 		if (data) {
 			storeSearchedCat(data);
 		}
-	}, [data]);
+	}, [storeSearchedCat]);
 	const textRow = text => {
 		const splitText = text.split(':');
 		return (
