@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Label = styled.p`
 	font-size: 1.5rem;
@@ -30,7 +29,6 @@ const SeeMore = styled.a`
 	font-size: 1.5rem;
 	font-weight: 500;
 	align-self: flex-end;
-	color: gray;
 	line-height: 3rem;
 	cursor: pointer;
 	${media.lessThan('small')`
@@ -70,6 +68,16 @@ const Container = styled.div`
 	width: 80%;
 `;
 
+const CatItem = styled.div`
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+
+	img {
+		border-radius: 1.25rem;
+	}
+`;
+
 const MostSearch = ({ resource }) => {
 	const topSearches = resource.read();
 
@@ -83,15 +91,17 @@ const MostSearch = ({ resource }) => {
 
 	const catItems = () => {
 		return topSearches.map(cat => (
-			<LazyLoadImage
-				onClick={() => handleCatClick(cat)}
-				key={cat.id}
-				src={cat.photoUrl}
-				alt={cat.name}
-				width='100%'
-				effect='blur'
-				height='100%'
-			/>
+			<CatItem>
+				<LazyLoadImage
+					onClick={() => handleCatClick(cat)}
+					key={cat.id}
+					src={cat.photoUrl}
+					alt={cat.name}
+					width='100%'
+					effect='blur'
+					height='100%'
+				/>
+			</CatItem>
 		));
 	};
 

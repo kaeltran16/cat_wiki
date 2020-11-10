@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import CatLogo from './Commons/CatLogo';
+import CatLogo from './CatLogo';
 
 const Container = styled.div`
 	padding: 2rem;

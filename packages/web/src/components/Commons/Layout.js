@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from './navbar';
-import Footer from './Commons/Footer';
-import ErrorBoundary from './Commons/ErrorBoundary';
+import Navbar from './Navbar';
+import { Footer } from '../Commons';
+import ErrorBoundary from './ErrorBoundary';
 import media from 'styled-media-query';
 
 const Container = styled.div`
