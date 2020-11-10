@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
-import LazyImage from '../Commons/LazyImage';
+import {
+	LazyLoadImage,
+	trackWindowScroll
+} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const PhotoContainer = styled.div`
 	display: grid;
@@ -19,17 +23,24 @@ const Header = styled.h4`
 	font-size: 2.5rem;
 	margin: 5rem 2rem 2rem;
 `;
+
+const ImageContainer = styled.div`
+	width: 100%;
+	height: 20rem;
+`;
 const MoreImage = ({ resource }) => {
 	const images = resource.read();
 	const displayImage = data => {
 		return data.map((item, idx) => (
-			<LazyImage
-				width='100%'
-				height='20rem'
-				src={item.photoUrl}
-				key={`${item.id}-${idx}`}
-				alt={item.name}
-			/>
+			<ImageContainer>
+				<LazyLoadImage
+					width='100%'
+					height='100%'
+					src={item.photoUrl}
+					key={`${item.id}-${idx}`}
+					alt={item.name}
+				/>
+			</ImageContainer>
 		));
 	};
 	return (
@@ -40,4 +51,4 @@ const MoreImage = ({ resource }) => {
 	);
 };
 
-export default MoreImage;
+export default trackWindowScroll(MoreImage);

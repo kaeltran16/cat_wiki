@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { useHistory } from 'react-router-dom';
-import LazyImage from '../Commons/LazyImage';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Label = styled.p`
 	font-size: 1.5rem;
@@ -82,12 +83,13 @@ const MostSearch = ({ resource }) => {
 
 	const catItems = () => {
 		return topSearches.map(cat => (
-			<LazyImage
+			<LazyLoadImage
 				onClick={() => handleCatClick(cat)}
 				key={cat.id}
 				src={cat.photoUrl}
 				alt={cat.name}
 				width='100%'
+				effect='blur'
 				height='100%'
 			/>
 		));

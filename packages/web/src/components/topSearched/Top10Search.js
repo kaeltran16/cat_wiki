@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
-import LazyImage from '../Commons/LazyImage';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Container = styled.div`
 	display: grid;
@@ -59,7 +60,13 @@ const Top10Search = ({ resource }) => {
 		return topSearches.map((cat, idx) => (
 			<CatItem key={`${cat.id}`}>
 				<ImageContainer>
-					<LazyImage src={cat.photoUrl} alt={cat.name} />
+					<LazyLoadImage
+						width='100%'
+						height='100%'
+						effect='blur'
+						src={cat.photoUrl}
+						alt={cat.name}
+					/>
 				</ImageContainer>
 				<Name>{`${idx + 1}. ${cat.name}`}</Name>
 				<Description>{cat.desc}</Description>
