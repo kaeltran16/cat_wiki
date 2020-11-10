@@ -15,11 +15,15 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
 	width: 35%;
-	height: 30rem;
+	height: 40rem;
 	${media.lessThan('small')`
 			width: 100%;
 			height: 30rem;
 	`}
+
+	img {
+		border-radius: 3rem;
+	}
 `;
 
 const DetailContainer = styled.div`
@@ -72,7 +76,7 @@ const Detail = ({ resource, storeSearchedCat }) => {
 		if (data) {
 			storeSearchedCat(data);
 		}
-	}, [storeSearchedCat]);
+	}, [storeSearchedCat, data]);
 	const textRow = text => {
 		const splitText = text.split(':');
 		return (
