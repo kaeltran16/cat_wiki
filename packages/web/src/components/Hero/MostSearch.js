@@ -69,10 +69,7 @@ const Container = styled.div`
 `;
 
 const CatItem = styled.div`
-	width: 100%;
-	height: 100%;
 	cursor: pointer;
-
 	img {
 		border-radius: 1.25rem;
 	}
@@ -96,8 +93,8 @@ const MostSearch = ({ resource }) => {
 					onClick={() => handleCatClick(cat)}
 					src={cat.photoUrl}
 					alt={cat.name}
-					width='100%'
 					effect='blur'
+					width='100%'
 					height='100%'
 				/>
 			</CatItem>

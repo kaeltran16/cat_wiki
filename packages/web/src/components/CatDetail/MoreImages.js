@@ -40,6 +40,7 @@ const MoreImage = ({ resource }) => {
 				<LazyLoadImage
 					width='100%'
 					height='100%'
+					effect='blur'
 					src={item.photoUrl}
 					alt={item.name}
 				/>
