@@ -45,21 +45,6 @@ const Header = styled.h1`
 	`}
 `;
 
-const ImageContainer = styled.div`
-	display: grid;
-	grid-gap: 2rem;
-	height: 20rem;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1fr;
-
-	${media.lessThan('small')`
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		height: 32rem;	
-		margin-top: 2rem;
-	`}
-`;
-
 const Container = styled.div`
 	height: 50rem;
 	display: flex;
@@ -68,11 +53,31 @@ const Container = styled.div`
 	width: 80%;
 `;
 
-const CatItem = styled.div`
+const CatItem = styled.figure`
 	cursor: pointer;
+	transition: 0.5s;
+
 	img {
 		border-radius: 1.25rem;
 	}
+`;
+const ImageContainer = styled.div`
+	display: grid;
+	grid-gap: 2rem;
+	height: 20rem;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr;
+	margin-bottom: 4rem;
+
+	&:hover ${CatItem}:not(:hover) {
+		filter: grayscale(100%);
+	}
+	${media.lessThan('small')`
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		height: 32rem;	
+		margin-top: 2rem;
+	`}
 `;
 
 const MostSearch = ({ resource }) => {
@@ -88,7 +93,7 @@ const MostSearch = ({ resource }) => {
 
 	const catItems = () => {
 		return topSearches.map(cat => (
-			<CatItem key={cat.id}>
+			<CatItem>
 				<LazyLoadImage
 					onClick={() => handleCatClick(cat)}
 					src={cat.photoUrl}
