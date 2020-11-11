@@ -27,11 +27,12 @@ This project is for cat lovers to search for a cat, view their images and detail
 ```sh
 git clone https://github.com/kaeltran16/cat-wiki.git
 ```
-2. Install NPM packages
+2. Install packages
 ```sh
-npm install --prefix ./packages/web && npm install --prefix ./packages/functions
+yarn install
 ```
 3. Run the app
 ```JS
-npm run dev
+yarn dev
 ```
+[product-screenshot]: https://res.cloudinary.com/medium-cloned/image/upload/v1605090423/Screen_Shot_2020-11-11_at_5.24.51_PM.png
